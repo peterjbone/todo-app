@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
+import Input from "./components/Input/Input.jsx";
 
 function App() {
 	return (
@@ -9,21 +10,15 @@ function App() {
 			<div className={styles.todoWrapper}>
 				{/* Inputs section */}
 				<div className={styles.inputsGroup}>
-					<div className={styles.inputItem}>
-						<label htmlFor="title">Title</label>
-						<input id="title" type="text" placeholder="What is the task title?" />
-					</div>
-					<div className={styles.inputItem}>
-						<label htmlFor="description">Description</label>
-						<input id="description" type="text" placeholder="What is the task description?" />
-					</div>
+					<Input id="title" label="Title" placeholder="What is the task Title?" />
+					<Input id="description" label="Description" placeholder="What is the task description?" />
 					<div className={styles.inputItem}>
 						<button type="button" className={styles.primaryBtn}>
 							Add
 						</button>
 					</div>
 				</div>
-				{/* Inputs section */}
+				{/* buttons section */}
 				<div className={styles.buttonsGroup}>
 					<button type="button">Todo</button>
 					<button type="button">Completed</button>
