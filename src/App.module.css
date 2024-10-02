@@ -1,7 +1,30 @@
 .App {
 	width: 100%;
-	height: auto;
+	min-height: 100vh;
+	padding: 1em;
+	color: #eee;
+	background-color: #222;
+}
+
+.App > h1 {
+	text-align: center;
+}
+
+.App > .todoWrapper {
+	width: fit-content;
+	min-width: 500px;
+	max-width: 700px;
 	padding: 2em;
-	color: #fff;
-	background-color: #000;
+	margin: 2em auto 0;
+	background-color: #444;
+}
+
+.App > .todoWrapper > .inputsGroup {
+	width: 100%;
+	padding: 1em;
+	margin: 0 0 2em;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	border: 3px solid grey;
 }

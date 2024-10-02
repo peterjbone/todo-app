@@ -18,6 +18,7 @@ function App() {
 						</button>
 					</div>
 				</div>
+				<hr />
 				{/* buttons section */}
 				<div className={styles.buttonsGroup}>
 					<button type="button">Todo</button>
