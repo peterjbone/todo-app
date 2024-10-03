@@ -56,12 +56,12 @@ function App() {
 				<div className={styles.taskList}>
 					<div className={styles.taskListItem}>
 						<div>
-							<b>Task 1</b>
+							<span>Task 1</span>
 							<p>Description</p>
 						</div>
 						<div>
-							<MdDelete className="icon" />
-							<FaCheck className="icon" />
+							<MdDelete className="icon deleteIcon" />
+							<FaCheck className="icon checkIcon" />
 						</div>
 					</div>
 				</div>
