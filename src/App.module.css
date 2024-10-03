@@ -16,21 +16,80 @@
 	max-width: 700px;
 	padding: 2em;
 	margin: 2em auto 0;
-	background-color: #444;
+	background-color: #333;
 }
 
+/****** INPUTS SECTION */
+
 .todoWrapper > .inputsGroup {
-	width: 100%;
+	/* 	width: 100%; */
+	width: auto;
 	padding: 1em;
 	margin: 0 0 2em;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
-	border: 3px solid grey;
+	/* 	border: 3px solid grey; */
 }
 
 .inputsGroup > .inputItem {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: flex-start;
+}
+
+.inputItem > label {
+	display: block;
+	font-weight: bold;
+	margin: 0 0 1em;
+}
+
+.inputItem > input {
+	width: 16em;
+	padding: 0.5em;
+	border: none;
+	display: block;
+}
+
+.inputItem > input:focus {
+	outline: none;
+	outline: 2px solid #0ef174;
+}
+
+.inputItem > button {
+	width: 5em;
+	padding: 0.5em;
+	margin: 2em 0 0;
+	border: none;
+	border-radius: 0;
+	color: #222;
+	background-color: #0ef174;
+	cursor: pointer;
+}
+
+.inputItem > button:hover {
+	background-color: #08a74f;
+}
+
+/****** BUTTONS SECTION */
+
+.buttonsGroup {
+	margin: 2em 0;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	gap: 2px;
+}
+
+.buttonsGroup > button {
+	padding: 0.6em 1em;
+	border: none;
+	color: #eee;
+	background-color: #555;
+	cursor: pointer;
+}
+
+.buttonsGroup > button[data-btn-selected="active"] {
+	color: #222;
+	background-color: #0ef174;
 }
