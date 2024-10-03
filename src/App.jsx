@@ -3,13 +3,15 @@ import styles from "./App.module.css";
 import Input from "./components/Input/Input.jsx";
 //import Button from "./components/Button/Button.jsx";
 
+import { MdDelete } from "react-icons/md";
+
 function App() {
-	const [isSelected, setIsSelected] = useState(null);
+	const [buttonSelected, setButtonSelected] = useState(null);
 
 	const handleClick = (e) => {
 		const { innerText } = e.target;
-		if (innerText === "Todo") setIsSelected("Todo");
-		if (innerText === "Completed") setIsSelected("Completed");
+		if (innerText === "Todo") setButtonSelected("Todo");
+		if (innerText === "Completed") setButtonSelected("Completed");
 	};
 
 	return (
@@ -38,13 +40,13 @@ function App() {
 				<div className={styles.buttonsGroup}>
 					<button
 						type="button"
-						data-btn-selected={isSelected === "Todo" && "active"}
+						data-btn-selected={buttonSelected === "Todo" && "active"}
 						onClick={handleClick}>
 						Todo
 					</button>
 					<button
 						type="button"
-						data-btn-selected={isSelected === "Completed" && "active"}
+						data-btn-selected={buttonSelected === "Completed" && "active"}
 						onClick={handleClick}>
 						Completed
 					</button>
@@ -52,11 +54,11 @@ function App() {
 				{/* Tasks list */}
 				<div className={styles.taskList}>
 					<div className={styles.taskListItem}>
-						<b>Task 1</b>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-							distinctio alias ut quae voluptates corrupti.
-						</p>
+						<div>
+							<b>Task 1</b>
+							<p>Description</p>
+						</div>
+						<div></div>
 					</div>
 				</div>
 			</div>
