@@ -4,6 +4,7 @@ import Input from "./components/Input/Input.jsx";
 //import Button from "./components/Button/Button.jsx";
 
 import { MdDelete } from "react-icons/md";
+import { AiOutlineDelete } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 
 function App() {
@@ -60,8 +61,8 @@ function App() {
 							<p>Description</p>
 						</div>
 						<div>
-							<MdDelete className="icon deleteIcon" />
-							<FaCheck className="icon checkIcon" />
+							<AiOutlineDelete className={`${styles.icon} ${styles.deleteIcon}`} />
+							<FaCheck className={`${styles.icon} ${styles.checkIcon}`} />
 						</div>
 					</div>
 				</div>
