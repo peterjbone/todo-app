@@ -4,6 +4,7 @@ import Input from "./components/Input/Input.jsx";
 //import Button from "./components/Button/Button.jsx";
 
 import { MdDelete } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
 
 function App() {
 	const [buttonSelected, setButtonSelected] = useState(null);
@@ -58,7 +59,10 @@ function App() {
 							<b>Task 1</b>
 							<p>Description</p>
 						</div>
-						<div></div>
+						<div>
+							<MdDelete className="icon" />
+							<FaCheck className="icon" />
+						</div>
 					</div>
 				</div>
 			</div>
