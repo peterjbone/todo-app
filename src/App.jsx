@@ -9,11 +9,19 @@ import { FaCheck } from "react-icons/fa";
 
 function App() {
 	const [buttonSelected, setButtonSelected] = useState(null);
+	const [allTodos, setAllTodos] = useState([]);
+	const [newTitle, setNewTitle] = useState("");
+	const [newDescription, setNewDescription] = useState("");
 
-	const handleClick = (e) => {
+	const handleSelectedButton = (e) => {
 		const { innerText } = e.target;
 		if (innerText === "Todo") setButtonSelected("Todo");
 		if (innerText === "Completed") setButtonSelected("Completed");
+	};
+
+	const handleInputValue = (e) => {
+		const { value } = e.target;
+		console.log(value);
 	};
 
 	return (
@@ -24,13 +32,21 @@ function App() {
 				{/* Inputs section */}
 				<div className={styles.inputsGroup}>
 					<div className={styles.inputItem}>
-						<Input id="title" label="Title" placeholder="What is the task Title?" />
+						<Input
+							id="title"
+							label="Title"
+							placeholder="What is the task Title?"
+							value={newTitle}
+							handleInputValue={handleInputValue}
+						/>
 					</div>
 					<div className={styles.inputItem}>
 						<Input
 							id="description"
 							label="Description"
 							placeholder="What is the task description?"
+							value={newDescription}
+							handleInputValue={handleInputValue}
 						/>
 					</div>
 					<div className={styles.inputItem}>
@@ -43,13 +59,13 @@ function App() {
 					<button
 						type="button"
 						data-btn-selected={buttonSelected === "Todo" && "active"}
-						onClick={handleClick}>
+						onClick={handleSelectedButton}>
 						Todo
 					</button>
 					<button
 						type="button"
 						data-btn-selected={buttonSelected === "Completed" && "active"}
-						onClick={handleClick}>
+						onClick={handleSelectedButton}>
 						Completed
 					</button>
 				</div>
