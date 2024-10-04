@@ -1,7 +1,7 @@
 import React from "react";
 //import styles from "./Input.module.css";
 
-const Input = ({ id, label, placeholder, value, handleInputValue }) => {
+const Input = ({ id, label, placeholder, value, handleChange }) => {
 	return (
 		<>
 			<label htmlFor={id}>{label}</label>
@@ -10,7 +10,7 @@ const Input = ({ id, label, placeholder, value, handleInputValue }) => {
 				type="text"
 				placeholder={placeholder}
 				value={value}
-				onChange={handleInputValue}
+				onChange={handleChange}
 			/>
 		</>
 	);

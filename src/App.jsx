@@ -19,9 +19,16 @@ function App() {
 		if (innerText === "Completed") setButtonSelected("Completed");
 	};
 
-	const handleInputValue = (e) => {
+	const handleNewTitle = (e) => {
 		const { value } = e.target;
-		console.log(value);
+		setNewTitle(value);
+		//console.log(newTitle);
+	};
+
+	const handleNewDescription = (e) => {
+		const { value } = e.target;
+		setNewDescription(value);
+		//console.log(newDescription);
 	};
 
 	return (
@@ -37,7 +44,7 @@ function App() {
 							label="Title"
 							placeholder="What is the task Title?"
 							value={newTitle}
-							handleInputValue={handleInputValue}
+							handleChange={handleNewTitle}
 						/>
 					</div>
 					<div className={styles.inputItem}>
@@ -46,7 +53,7 @@ function App() {
 							label="Description"
 							placeholder="What is the task description?"
 							value={newDescription}
-							handleInputValue={handleInputValue}
+							handleChange={handleNewDescription}
 						/>
 					</div>
 					<div className={styles.inputItem}>
