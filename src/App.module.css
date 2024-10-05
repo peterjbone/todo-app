@@ -91,7 +91,7 @@
 	cursor: pointer;
 }
 
-.buttonsGroup > button[data-btn-selected="active"] {
+.buttonsGroup > button.active {
 	color: #222;
 	background-color: #0ef174;
 }

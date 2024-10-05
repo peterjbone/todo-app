@@ -5,16 +5,21 @@ import Input from "./components/Input/Input.jsx";
 import TaskListItem from "./components/TaskListItem/TaskListItem.jsx";
 
 function App() {
-	const [buttonSelected, setButtonSelected] = useState(null);
+	//const [buttonSelected, setButtonSelected] = useState(null);
+	const [isCompletedScreen, setIsCompletedScreen] = useState(false);
+
 	const [allTodos, setAllTodos] = useState([]);
 	const [newTitle, setNewTitle] = useState("");
 	const [newDescription, setNewDescription] = useState("");
 
-	const handleSelectedButton = (e) => {
+	/* 	const handleSelectedButton = (e) => {
 		const { innerText } = e.target;
 		if (innerText === "Todo") setButtonSelected("Todo");
 		if (innerText === "Completed") setButtonSelected("Completed");
-	};
+	}; */
+
+	const handleTodoBtn = () => setIsCompletedScreen(false);
+	const handleCompletedBtn = () => setIsCompletedScreen(true);
 
 	const handleNewTitle = (e) => {
 		const { value } = e.target;
@@ -95,14 +100,14 @@ function App() {
 				<div className={styles.buttonsGroup}>
 					<button
 						type="button"
-						data-btn-selected={buttonSelected === "Todo" && "active"}
-						onClick={handleSelectedButton}>
+						className={!isCompletedScreen && `${styles.active}`}
+						onClick={handleTodoBtn}>
 						Todo
 					</button>
 					<button
 						type="button"
-						data-btn-selected={buttonSelected === "Completed" && "active"}
-						onClick={handleSelectedButton}>
+						className={isCompletedScreen && `${styles.active}`}
+						onClick={handleCompletedBtn}>
 						Completed
 					</button>
 				</div>
