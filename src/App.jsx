@@ -24,7 +24,7 @@ function App() {
 	};
 
 	const handleAddTodo = () => {
-		let newTodo = {
+		const newTodo = {
 			title: newTitle,
 			description: newDescription
 		};
@@ -44,7 +44,7 @@ function App() {
 		setAllTodos(reducedTodos);
 	};
 
-	const handleComplete = (index) => {
+	const handleCompletedTodos = (index) => {
 		let date = new Date().toLocaleDateString();
 		let time = new Date().toLocaleTimeString();
 		let completedAt = `Task completed on ${date} at ${time}`;
@@ -54,17 +54,30 @@ function App() {
 			completedAt
 		};
 
+		handleDeleteTodo(index);
+
 		const updatedCompletedTodos = [...completedTodos];
 		updatedCompletedTodos.push(completedItem);
 		setCompletedTodos(updatedCompletedTodos);
+
+		localStorage.setItem("completedList", JSON.stringify(updatedCompletedTodos));
 	};
 
-	//? to check for task in the local storage
+	//? to check for "todo tasks" in the local storage
 	useEffect(() => {
-		let savedTodos = JSON.parse(localStorage.getItem("todoList"));
+		let savedTodoTasks = JSON.parse(localStorage.getItem("todoList"));
 
-		if (savedTodos) {
-			setAllTodos(savedTodos);
+		if (savedTodoTasks) {
+			setAllTodos(savedTodoTasks);
+		}
+	}, []);
+
+	//? to check for "completed tasks" in the local storage
+	useEffect(() => {
+		let savedCompletedTasks = JSON.parse(localStorage.getItem("completedList"));
+
+		if (savedCompletedTasks) {
+			setCompletedTodos(savedCompletedTasks);
 		}
 	}, []);
 
@@ -132,7 +145,7 @@ function App() {
 										description={todo.description}
 										index={index}
 										handleDeleteTodo={handleDeleteTodo}
-										handleComplete={handleComplete}
+										handleCompletedTodos={handleCompletedTodos}
 									/>
 								))
 							)

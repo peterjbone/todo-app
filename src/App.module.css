@@ -30,7 +30,7 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: 1em;
-	border: 3px solid grey;
+	/* border: 3px solid grey; */
 }
 
 .inputsGroup > .inputItem {

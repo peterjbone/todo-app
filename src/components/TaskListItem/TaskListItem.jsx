@@ -11,7 +11,7 @@ const TaskListItem = ({
 	completedAt,
 	index,
 	handleDeleteTodo,
-	handleComplete
+	handleCompletedTodos
 }) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);
@@ -36,7 +36,7 @@ const TaskListItem = ({
 				{!completedAt && (
 					<FaCheck
 						className={checkIconClassNames}
-						onClick={() => handleComplete(index)}
+						onClick={() => handleCompletedTodos(index)}
 						title="Complete?"
 					/>
 				)}
