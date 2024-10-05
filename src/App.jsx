@@ -31,6 +31,15 @@ function App() {
 		//console.log(newDescription);
 	};
 
+	const handleAddTodo = () => {
+		let newTodo = {
+			title: newTitle,
+			description: newDescription
+		};
+
+		setAllTodos((prevState) => [...prevState, newTodo]);
+	};
+
 	return (
 		<div className={styles.App}>
 			<h1>Todo app list</h1>
@@ -57,7 +66,9 @@ function App() {
 						/>
 					</div>
 					<div className={styles.inputItem}>
-						<button type="button">Add</button>
+						<button type="button" onClick={handleAddTodo}>
+							Add
+						</button>
 					</div>
 				</div>
 				<hr />
@@ -78,7 +89,7 @@ function App() {
 				</div>
 				{/* Tasks list */}
 				<div className={styles.taskList}>
-					<div className={styles.taskListItem}>
+					{/* <div className={styles.taskListItem}>
 						<div>
 							<span>Task 1</span>
 							<p>Description</p>
@@ -87,7 +98,7 @@ function App() {
 							<AiOutlineDelete className={`${styles.icon} ${styles.deleteIcon}`} />
 							<FaCheck className={`${styles.icon} ${styles.checkIcon}`} />
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
