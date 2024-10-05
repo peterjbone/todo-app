@@ -42,6 +42,8 @@ function App() {
 		localStorage.setItem("todoList", JSON.stringify(updatedAllTodos));
 	};
 
+	const deleteTodo = (e, index) => {};
+
 	//? to check for task in the local storage
 	useEffect(() => {
 		let savedTodos = JSON.parse(localStorage.getItem("todoList"));
@@ -106,11 +108,13 @@ function App() {
 							<h2 style={{ textAlign: "center" }}>You don’t have task to do.</h2>
 						</div>
 					) : (
-						allTodos.map((todo) => (
+						allTodos.map((todo, index) => (
 							<TaskListItem
 								key={todo.title}
 								title={todo.title}
 								description={todo.description}
+								deleteTodo={deleteTodo}
+								index={index}
 							/>
 						))
 					)}
