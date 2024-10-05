@@ -4,10 +4,6 @@ import Input from "./components/Input/Input.jsx";
 //import Button from "./components/Button/Button.jsx";
 import TaskListItem from "./components/TaskListItem/TaskListItem.jsx";
 
-import { MdDelete } from "react-icons/md";
-import { AiOutlineDelete } from "react-icons/ai";
-import { FaCheck } from "react-icons/fa";
-
 function App() {
 	const [buttonSelected, setButtonSelected] = useState(null);
 	const [allTodos, setAllTodos] = useState([]);
@@ -39,7 +35,18 @@ function App() {
 		};
 
 		setAllTodos((prevState) => [...prevState, newTodo]);
+		localStorage.setItem("todoList", JSON.stringify(allTodos));
 	};
+
+	//? to check for task in the local storage
+	useEffect(() => {
+		let savedTodos = JSON.parse(localStorage.getItem("todoList"));
+		console.log();
+
+		if (savedTodos) {
+			setAllTodos(savedTodos);
+		}
+	}, []);
 
 	return (
 		<div className={styles.App}>
@@ -90,20 +97,9 @@ function App() {
 				</div>
 				{/* Tasks list */}
 				<div className={styles.taskList}>
-					{/* <div className={styles.taskListItem}>
-						<div>
-							<span>Task 1</span>
-							<p>Description</p>
-						</div>
-						<div>
-							<AiOutlineDelete className={`${styles.icon} ${styles.deleteIcon}`} />
-							<FaCheck className={`${styles.icon} ${styles.checkIcon}`} />
-						</div>
-					</div> */}
-
 					{!allTodos.length ? (
 						<div>
-							<h2>You don’t have task to do.</h2>
+							<h2 style={{ textAlign: "center" }}>You don’t have task to do.</h2>
 						</div>
 					) : (
 						allTodos.map((todo) => (
