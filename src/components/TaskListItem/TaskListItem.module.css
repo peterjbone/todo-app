@@ -1,0 +1,46 @@
+.taskListItem {
+	padding: 1em;
+	border: 1px solid yellow;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.taskListItem > div {
+	/* width: 30%; */
+	height: auto;
+}
+
+.taskListItem > div > span {
+	margin: 0 0 1em;
+	font-size: 1.3em;
+	font-weight: 700;
+	color: #0ef174;
+	display: block;
+}
+
+.taskListItem > div > p {
+	margin: 0;
+	font-size: 0.85em;
+	color: azure;
+}
+
+.taskListItem > div > .icon {
+	font-size: 32px;
+	cursor: pointer;
+	transition: color 1s ease-in-out 0;
+}
+
+.taskListItem > div > .checkIcon {
+	margin: 0 0 0 0.5em;
+	color: #0ef174;
+}
+
+.taskListItem > div > .checkIcon:hover {
+	color: #04c46a;
+}
+
+.taskListItem > div > .deleteIcon:hover {
+	color: red;
+}

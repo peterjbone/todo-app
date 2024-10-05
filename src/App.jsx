@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import Input from "./components/Input/Input.jsx";
 //import Button from "./components/Button/Button.jsx";
+import TaskListItem from "./components/TaskListItem/TaskListItem.jsx";
 
 import { MdDelete } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -99,6 +100,14 @@ function App() {
 							<FaCheck className={`${styles.icon} ${styles.checkIcon}`} />
 						</div>
 					</div> */}
+
+					{!allTodos.length ? (
+						<div>
+							<h2>You don’t have task to do.</h2>
+						</div>
+					) : (
+						<TaskListItem />
+					)}
 				</div>
 			</div>
 		</div>
