@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.css";
 import Input from "./components/Input/Input.jsx";
 import TaskListItem from "./components/TaskListItem/TaskListItem.jsx";
@@ -23,7 +24,7 @@ function App() {
 		setNewDescription(value);
 	};
 
-	const handleAddTodo = () => {
+	const handleAddTodo = (e) => {
 		const newTodo = {
 			title: newTitle,
 			description: newDescription
@@ -34,6 +35,9 @@ function App() {
 		setAllTodos(updatedAllTodos);
 
 		localStorage.setItem("todoList", JSON.stringify(updatedAllTodos));
+
+		setNewTitle("");
+		setNewDescription("");
 	};
 
 	const handleDeleteTodo = (index) => {
@@ -140,7 +144,7 @@ function App() {
 							) : (
 								allTodos.map((todo, index) => (
 									<TaskListItem
-										key={todo.title}
+										key={uuidv4()}
 										title={todo.title}
 										description={todo.description}
 										index={index}
@@ -159,7 +163,7 @@ function App() {
 						) : (
 							completedTodos.map((todo, index) => (
 								<TaskListItem
-									key={todo.title}
+									key={uuidv4()}
 									title={todo.title}
 									description={todo.description}
 									completedAt={todo.completedAt}
