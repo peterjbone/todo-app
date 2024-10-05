@@ -106,7 +106,13 @@ function App() {
 							<h2>You don’t have task to do.</h2>
 						</div>
 					) : (
-						<TaskListItem />
+						allTodos.map((todo) => (
+							<TaskListItem
+								key={todo.title}
+								title={todo.title}
+								description={todo.description}
+							/>
+						))
 					)}
 				</div>
 			</div>
