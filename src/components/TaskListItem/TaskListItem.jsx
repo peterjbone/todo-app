@@ -5,7 +5,14 @@ import classNames from "classnames";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 
-const TaskListItem = ({ title, description, handleDeleteTodo, index }) => {
+const TaskListItem = ({
+	title,
+	description,
+	completedAt,
+	index,
+	handleDeleteTodo,
+	handleComplete
+}) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);
 
@@ -14,13 +21,25 @@ const TaskListItem = ({ title, description, handleDeleteTodo, index }) => {
 			<div>
 				<span>{title}</span>
 				<p>{description}</p>
+				{completedAt && (
+					<p>
+						<u>{completedAt}</u>
+					</p>
+				)}
 			</div>
 			<div>
 				<AiOutlineDelete
 					className={deleteIconClassNames}
-					onClick={(e) => handleDeleteTodo(e, index)}
+					onClick={() => handleDeleteTodo(index)}
+					title="Delete?"
 				/>
-				<FaCheck className={checkIconClassNames} />
+				{!completedAt && (
+					<FaCheck
+						className={checkIconClassNames}
+						onClick={() => handleComplete(index)}
+						title="Complete?"
+					/>
+				)}
 			</div>
 		</div>
 	);

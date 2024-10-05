@@ -23,9 +23,14 @@
 }
 
 .taskListItem > div > p {
-	margin: 0;
-	font-size: 0.85em;
+	margin: 0 0 0.8em 0;
+	font-size: 1em;
 	color: azure;
+}
+
+.taskListItem > div > p > u {
+	font-size: 0.8em;
+	color: #ddd;
 }
 
 .taskListItem > div > .icon {

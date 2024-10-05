@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import Input from "./components/Input/Input.jsx";
-//import Button from "./components/Button/Button.jsx";
 import TaskListItem from "./components/TaskListItem/TaskListItem.jsx";
 
 function App() {
-	//const [buttonSelected, setButtonSelected] = useState(null);
 	const [isCompletedScreen, setIsCompletedScreen] = useState(false);
-
-	const [allTodos, setAllTodos] = useState([]);
 	const [newTitle, setNewTitle] = useState("");
 	const [newDescription, setNewDescription] = useState("");
-
-	/* 	const handleSelectedButton = (e) => {
-		const { innerText } = e.target;
-		if (innerText === "Todo") setButtonSelected("Todo");
-		if (innerText === "Completed") setButtonSelected("Completed");
-	}; */
+	const [allTodos, setAllTodos] = useState([]);
+	const [completedTodos, setCompletedTodos] = useState([]);
 
 	const handleTodoBtn = () => setIsCompletedScreen(false);
 	const handleCompletedBtn = () => setIsCompletedScreen(true);
@@ -41,23 +33,35 @@ function App() {
 		updatedAllTodos.push(newTodo);
 		setAllTodos(updatedAllTodos);
 
-		//console.log("updatedAllTodos", updatedAllTodos);
 		localStorage.setItem("todoList", JSON.stringify(updatedAllTodos));
 	};
 
-	const handleDeleteTodo = (e, index) => {
-		//console.log(index);
-		const reducedTodo = [...allTodos];
-		reducedTodo.splice(index, 1);
+	const handleDeleteTodo = (index) => {
+		const reducedTodos = [...allTodos];
+		reducedTodos.splice(index, 1);
 
-		localStorage.setItem("todoList", JSON.stringify(reducedTodo));
-		setAllTodos(reducedTodo);
+		localStorage.setItem("todoList", JSON.stringify(reducedTodos));
+		setAllTodos(reducedTodos);
+	};
+
+	const handleComplete = (index) => {
+		let date = new Date().toLocaleDateString();
+		let time = new Date().toLocaleTimeString();
+		let completedAt = `Task completed on ${date} at ${time}`;
+
+		const completedItem = {
+			...allTodos[index],
+			completedAt
+		};
+
+		const updatedCompletedTodos = [...completedTodos];
+		updatedCompletedTodos.push(completedItem);
+		setCompletedTodos(updatedCompletedTodos);
 	};
 
 	//? to check for task in the local storage
 	useEffect(() => {
 		let savedTodos = JSON.parse(localStorage.getItem("todoList"));
-		//console.log("savedTodos", savedTodos);
 
 		if (savedTodos) {
 			setAllTodos(savedTodos);
@@ -100,34 +104,58 @@ function App() {
 				<div className={styles.buttonsGroup}>
 					<button
 						type="button"
-						className={!isCompletedScreen && `${styles.active}`}
+						className={!isCompletedScreen ? `${styles.active}` : undefined}
 						onClick={handleTodoBtn}>
 						Todo
 					</button>
 					<button
 						type="button"
-						className={isCompletedScreen && `${styles.active}`}
+						className={isCompletedScreen ? `${styles.active}` : undefined}
 						onClick={handleCompletedBtn}>
 						Completed
 					</button>
 				</div>
 				{/* Tasks list */}
 				<div className={styles.taskList}>
-					{!allTodos.length ? (
-						<div>
-							<h2 style={{ textAlign: "center" }}>You don’t have task to do.</h2>
-						</div>
-					) : (
-						allTodos.map((todo, index) => (
-							<TaskListItem
-								key={todo.title}
-								title={todo.title}
-								description={todo.description}
-								handleDeleteTodo={handleDeleteTodo}
-								index={index}
-							/>
-						))
-					)}
+					{
+						//* the NO completed screen
+						!isCompletedScreen ? (
+							!allTodos.length ? (
+								<div>
+									<h2 style={{ textAlign: "center" }}>You don’t have task to do.</h2>
+								</div>
+							) : (
+								allTodos.map((todo, index) => (
+									<TaskListItem
+										key={todo.title}
+										title={todo.title}
+										description={todo.description}
+										index={index}
+										handleDeleteTodo={handleDeleteTodo}
+										handleComplete={handleComplete}
+									/>
+								))
+							)
+						) : //* the YES completed screen
+						!completedTodos.length ? (
+							<div>
+								<h2 style={{ textAlign: "center" }}>
+									You have not complete any task.
+								</h2>
+							</div>
+						) : (
+							completedTodos.map((todo, index) => (
+								<TaskListItem
+									key={todo.title}
+									title={todo.title}
+									description={todo.description}
+									completedAt={todo.completedAt}
+									index={index}
+									handleDeleteTodo={handleDeleteTodo}
+								/>
+							))
+						)
+					}
 				</div>
 			</div>
 		</div>
