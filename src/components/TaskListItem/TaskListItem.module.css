@@ -13,8 +13,8 @@
 }
 
 .taskListItem > div > span {
-	margin: 0 0 1em;
-	font-size: 1.3em;
+	margin: 0 0 0.5em;
+	font-size: 1.5em;
 	font-weight: 700;
 	color: #0ef174;
 	display: block;

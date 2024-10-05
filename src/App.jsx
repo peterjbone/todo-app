@@ -34,14 +34,18 @@ function App() {
 			description: newDescription
 		};
 
-		setAllTodos((prevState) => [...prevState, newTodo]);
-		localStorage.setItem("todoList", JSON.stringify(allTodos));
+		const updatedAllTodos = [...allTodos];
+		updatedAllTodos.push(newTodo);
+		setAllTodos(updatedAllTodos);
+
+		//console.log("updatedAllTodos", updatedAllTodos);
+		localStorage.setItem("todoList", JSON.stringify(updatedAllTodos));
 	};
 
 	//? to check for task in the local storage
 	useEffect(() => {
 		let savedTodos = JSON.parse(localStorage.getItem("todoList"));
-		console.log();
+		//console.log("savedTodos", savedTodos);
 
 		if (savedTodos) {
 			setAllTodos(savedTodos);
