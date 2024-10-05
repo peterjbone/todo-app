@@ -19,13 +19,11 @@ function App() {
 	const handleNewTitle = (e) => {
 		const { value } = e.target;
 		setNewTitle(value);
-		//console.log(newTitle);
 	};
 
 	const handleNewDescription = (e) => {
 		const { value } = e.target;
 		setNewDescription(value);
-		//console.log(newDescription);
 	};
 
 	const handleAddTodo = () => {
@@ -42,7 +40,14 @@ function App() {
 		localStorage.setItem("todoList", JSON.stringify(updatedAllTodos));
 	};
 
-	const deleteTodo = (e, index) => {};
+	const handleDeleteTodo = (e, index) => {
+		//console.log(index);
+		const reducedTodo = [...allTodos];
+		reducedTodo.splice(index, 1);
+
+		localStorage.setItem("todoList", JSON.stringify(reducedTodo));
+		setAllTodos(reducedTodo);
+	};
 
 	//? to check for task in the local storage
 	useEffect(() => {
@@ -113,7 +118,7 @@ function App() {
 								key={todo.title}
 								title={todo.title}
 								description={todo.description}
-								deleteTodo={deleteTodo}
+								handleDeleteTodo={handleDeleteTodo}
 								index={index}
 							/>
 						))

@@ -100,7 +100,7 @@
 
 .todoWrapper > .taskList {
 	padding: 0.5em;
-	border: 3px solid red;
+	/* 	border: 3px solid red; */
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 1.5em;

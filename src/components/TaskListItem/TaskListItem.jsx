@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 
-const TaskListItem = ({ title, description, deleteTodo, index }) => {
+const TaskListItem = ({ title, description, handleDeleteTodo, index }) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);
 
@@ -18,7 +18,7 @@ const TaskListItem = ({ title, description, deleteTodo, index }) => {
 			<div>
 				<AiOutlineDelete
 					className={deleteIconClassNames}
-					onClick={(e) => deleteTodo(e, index)}
+					onClick={(e) => handleDeleteTodo(e, index)}
 				/>
 				<FaCheck className={checkIconClassNames} />
 			</div>
