@@ -24,6 +24,7 @@ function App() {
 		setNewDescription(value);
 	};
 
+	//? Handlers function for the buttons
 	const handleAddTodo = (e) => {
 		const newTodo = {
 			title: newTitle,
@@ -65,6 +66,14 @@ function App() {
 
 		localStorage.setItem("completedList", JSON.stringify(updatedCompletedTodos));
 		setCompletedTodos(updatedCompletedTodos);
+	};
+
+	const handleDeleteCompletedTodo = (index) => {
+		const reducedTodos = [...completedTodos];
+		reducedTodos.splice(index, 1);
+
+		localStorage.setItem("completedList", JSON.stringify(reducedTodos));
+		setCompletedTodos(reducedTodos);
 	};
 
 	//? to check for "todo tasks" in the local storage
@@ -169,6 +178,7 @@ function App() {
 									completedAt={todo.completedAt}
 									index={index}
 									handleDeleteTodo={handleDeleteTodo}
+									handleDeleteCompletedTodo={handleDeleteCompletedTodo}
 								/>
 							))
 						)

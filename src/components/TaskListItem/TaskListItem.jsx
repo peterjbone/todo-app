@@ -29,11 +29,6 @@ const TaskListItem = ({
 				)}
 			</div>
 			<div>
-				{/* 	<AiOutlineDelete
-					className={deleteIconClassNames}
-					onClick={() => handleDeleteTodo(index)}
-					title="Delete?"
-				/> */}
 				{!completedAt ? (
 					<AiOutlineDelete
 						className={deleteIconClassNames}
@@ -44,7 +39,7 @@ const TaskListItem = ({
 					<AiOutlineDelete
 						className={deleteIconClassNames}
 						onClick={() => handleDeleteCompletedTodo(index)}
-						title="Delete?"
+						title="Delete completed task?"
 					/>
 				)}
 				{!completedAt && (
