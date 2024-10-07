@@ -81,6 +81,8 @@ function App() {
 
 	const handleUpdateDescription = (e) => {};
 
+	const handleEdit = (e) => {};
+
 	//? to check for "todo tasks" in the local storage
 	useEffect(() => {
 		let savedTodoTasks = JSON.parse(localStorage.getItem("todoList"));
@@ -160,18 +162,19 @@ function App() {
 							) : (
 								allTodos.map((todo, index) => {
 									if (currentEdit === index) {
-										<div className={style.editWrapper}>
+										<div className={styles.editWrapper}>
 											<input
+												name="newTitle"
 												type="text"
 												placeholder="Update title"
 												onChange={(e) => handleUpdateTitle(e.target.value)}
+												value={currentEditedItem.title}
 											/>
 											<textarea
 												name="newDescription"
 												placeholder="Update Description"
-												onChange={(e) =>
-													handleUpdateDescription(e.target.value)
-												}></textarea>
+												onChange={(e) => handleUpdateDescription(e.target.value)}
+												value={currentEditedItem.description}></textarea>
 										</div>;
 									} else {
 										return (
@@ -182,6 +185,7 @@ function App() {
 												index={index}
 												handleDeleteTodo={handleDeleteTodo}
 												handleCompletedTodos={handleCompletedTodos}
+												handleEdit={handleEdit}
 											/>
 										);
 									}
