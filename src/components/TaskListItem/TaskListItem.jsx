@@ -2,7 +2,7 @@ import styles from "./TaskListItem.module.css";
 import React from "react";
 import classNames from "classnames";
 //import { MdDelete } from "react-icons/md";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 
 const TaskListItem = ({
@@ -16,6 +16,7 @@ const TaskListItem = ({
 }) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);
+	const editIconClassNames = classNames(styles.icon, styles.editIcon);
 
 	return (
 		<div className={styles.taskListItem}>
@@ -47,6 +48,13 @@ const TaskListItem = ({
 						className={checkIconClassNames}
 						onClick={() => handleCompletedTodos(index)}
 						title="Complete?"
+					/>
+				)}
+				{!completedAt && (
+					<AiOutlineEdit
+						className={editIconClassNames}
+						onClick={() => {}}
+						title="Edit"
 					/>
 				)}
 			</div>

@@ -10,6 +10,7 @@ function App() {
 	const [newDescription, setNewDescription] = useState("");
 	const [allTodos, setAllTodos] = useState([]);
 	const [completedTodos, setCompletedTodos] = useState([]);
+	const [currentEdit, setCurrentEdit] = useState("");
 
 	const handleTodoBtn = () => setIsCompletedScreen(false);
 	const handleCompletedBtn = () => setIsCompletedScreen(true);
@@ -75,6 +76,10 @@ function App() {
 		localStorage.setItem("completedList", JSON.stringify(reducedTodos));
 		setCompletedTodos(reducedTodos);
 	};
+
+	const handleUpdateTitle = (e) => {};
+
+	const handleUpdateDescription = (e) => {};
 
 	//? to check for "todo tasks" in the local storage
 	useEffect(() => {
@@ -153,16 +158,34 @@ function App() {
 									</h2>
 								</div>
 							) : (
-								allTodos.map((todo, index) => (
-									<TaskListItem
-										key={uuidv4()}
-										title={todo.title}
-										description={todo.description}
-										index={index}
-										handleDeleteTodo={handleDeleteTodo}
-										handleCompletedTodos={handleCompletedTodos}
-									/>
-								))
+								allTodos.map((todo, index) => {
+									if (currentEdit === index) {
+										<div className={style.editWrapper}>
+											<input
+												type="text"
+												placeholder="Update title"
+												onChange={(e) => handleUpdateTitle(e.target.value)}
+											/>
+											<textarea
+												name="newDescription"
+												placeholder="Update Description"
+												onChange={(e) =>
+													handleUpdateDescription(e.target.value)
+												}></textarea>
+										</div>;
+									} else {
+										return (
+											<TaskListItem
+												key={uuidv4()}
+												title={todo.title}
+												description={todo.description}
+												index={index}
+												handleDeleteTodo={handleDeleteTodo}
+												handleCompletedTodos={handleCompletedTodos}
+											/>
+										);
+									}
+								})
 							)
 						) : //* the YES completed screen
 						!completedTodos.length ? (
