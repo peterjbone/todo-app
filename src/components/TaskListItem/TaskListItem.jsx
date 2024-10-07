@@ -11,7 +11,8 @@ const TaskListItem = ({
 	completedAt,
 	index,
 	handleDeleteTodo,
-	handleCompletedTodos
+	handleCompletedTodos,
+	handleDeleteCompletedTodo
 }) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);
@@ -28,11 +29,24 @@ const TaskListItem = ({
 				)}
 			</div>
 			<div>
-				<AiOutlineDelete
+				{/* 	<AiOutlineDelete
 					className={deleteIconClassNames}
 					onClick={() => handleDeleteTodo(index)}
 					title="Delete?"
-				/>
+				/> */}
+				{!completedAt ? (
+					<AiOutlineDelete
+						className={deleteIconClassNames}
+						onClick={() => handleDeleteTodo(index)}
+						title="Delete?"
+					/>
+				) : (
+					<AiOutlineDelete
+						className={deleteIconClassNames}
+						onClick={() => handleDeleteCompletedTodo(index)}
+						title="Delete?"
+					/>
+				)}
 				{!completedAt && (
 					<FaCheck
 						className={checkIconClassNames}

@@ -32,9 +32,9 @@ function App() {
 
 		const updatedAllTodos = [...allTodos];
 		updatedAllTodos.push(newTodo);
-		setAllTodos(updatedAllTodos);
 
 		localStorage.setItem("todoList", JSON.stringify(updatedAllTodos));
+		setAllTodos(updatedAllTodos);
 
 		setNewTitle("");
 		setNewDescription("");
@@ -62,9 +62,9 @@ function App() {
 
 		const updatedCompletedTodos = [...completedTodos];
 		updatedCompletedTodos.push(completedItem);
-		setCompletedTodos(updatedCompletedTodos);
 
 		localStorage.setItem("completedList", JSON.stringify(updatedCompletedTodos));
+		setCompletedTodos(updatedCompletedTodos);
 	};
 
 	//? to check for "todo tasks" in the local storage
