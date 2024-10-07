@@ -148,7 +148,9 @@ function App() {
 						!isCompletedScreen ? (
 							!allTodos.length ? (
 								<div>
-									<h2 style={{ textAlign: "center" }}>You don’t have task to do.</h2>
+									<h2 style={{ textAlign: "center" }}>
+										You don’t have tasks to do.
+									</h2>
 								</div>
 							) : (
 								allTodos.map((todo, index) => (
@@ -166,7 +168,7 @@ function App() {
 						!completedTodos.length ? (
 							<div>
 								<h2 style={{ textAlign: "center" }}>
-									You have not complete any task.
+									You have not completed any task.
 								</h2>
 							</div>
 						) : (
