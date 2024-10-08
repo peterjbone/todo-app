@@ -166,20 +166,22 @@ function App() {
 							) : (
 								allTodos.map((todo, index) => {
 									if (currentEdit === index) {
-										<div className={styles.editWrapper}>
-											<input
-												name="newTitle"
-												type="text"
-												placeholder="Update title"
-												onChange={(e) => handleUpdateTitle(e.target.value)}
-												value={currentEditedItem.title}
-											/>
-											<textarea
-												name="newDescription"
-												placeholder="Update Description"
-												onChange={(e) => handleUpdateDescription(e.target.value)}
-												value={currentEditedItem.description}></textarea>
-										</div>;
+										return (
+											<div key={uuidv4()} className={styles.editWrapper}>
+												<input
+													name="newTitle"
+													type="text"
+													placeholder="Update title"
+													onChange={(e) => handleUpdateTitle(e.target.value)}
+													value={currentEditedItem.title}
+												/>
+												<textarea
+													name="newDescription"
+													placeholder="Update Description"
+													onChange={(e) => handleUpdateDescription(e.target.value)}
+													value={currentEditedItem.description}></textarea>
+											</div>
+										);
 									} else {
 										return (
 											<TaskListItem

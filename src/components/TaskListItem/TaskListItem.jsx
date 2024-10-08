@@ -32,6 +32,7 @@ const TaskListItem = ({
 				)}
 			</div>
 			<div>
+				{/*For pending todos*/}
 				{!completedAt ? (
 					<AiOutlineDelete
 						className={deleteIconClassNames}
@@ -39,12 +40,14 @@ const TaskListItem = ({
 						title="Delete?"
 					/>
 				) : (
+					// for completed todos
 					<AiOutlineDelete
 						className={deleteIconClassNames}
 						onClick={() => handleDeleteCompletedTodo(index)}
 						title="Delete completed task?"
 					/>
 				)}
+				{/*For pending todos*/}
 				{!completedAt && (
 					<FaCheck
 						className={checkIconClassNames}
@@ -52,11 +55,12 @@ const TaskListItem = ({
 						title="Complete?"
 					/>
 				)}
+				{/*For pending todos*/}
 				{!completedAt && (
 					<AiOutlineEdit
 						className={editIconClassNames}
-						onClick={() => {}}
-						title="Edit"
+						onClick={() => handleEdit(index, todoItem)}
+						title="Edit?"
 					/>
 				)}
 			</div>
