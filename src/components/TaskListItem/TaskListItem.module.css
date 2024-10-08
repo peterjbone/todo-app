@@ -34,13 +34,14 @@
 }
 
 .taskListItem > div > .icon {
+	margin: 0 0 0 0.5em;
 	font-size: 32px;
 	cursor: pointer;
 	transition: color 1s ease-in-out 0;
 }
 
 .taskListItem > div > .checkIcon {
-	margin: 0 0 0 0.5em;
+	/* 	margin: 0 0 0 0.5em; */
 	color: #0ef174;
 }
 
@@ -50,4 +51,8 @@
 
 .taskListItem > div > .deleteIcon:hover {
 	color: red;
+}
+
+.taskListItem > div > .editIcon:hover {
+	color: lightyellow;
 }

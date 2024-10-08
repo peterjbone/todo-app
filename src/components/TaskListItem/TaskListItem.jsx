@@ -12,7 +12,9 @@ const TaskListItem = ({
 	index,
 	handleDeleteTodo,
 	handleCompletedTodos,
-	handleDeleteCompletedTodo
+	handleDeleteCompletedTodo,
+	handleEdit,
+	todoItem
 }) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);

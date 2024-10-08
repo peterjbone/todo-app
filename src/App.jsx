@@ -11,6 +11,7 @@ function App() {
 	const [allTodos, setAllTodos] = useState([]);
 	const [completedTodos, setCompletedTodos] = useState([]);
 	const [currentEdit, setCurrentEdit] = useState("");
+	const [currentEditedItem, setCurrentEditedItem] = useState("");
 
 	const handleTodoBtn = () => setIsCompletedScreen(false);
 	const handleCompletedBtn = () => setIsCompletedScreen(true);
@@ -77,11 +78,14 @@ function App() {
 		setCompletedTodos(reducedTodos);
 	};
 
-	const handleUpdateTitle = (e) => {};
+	const handleUpdateTitle = (value) => {};
 
-	const handleUpdateDescription = (e) => {};
+	const handleUpdateDescription = (value) => {};
 
-	const handleEdit = (e) => {};
+	const handleEdit = (index, item) => {
+		setCurrentEdit(index);
+		setCurrentEditedItem(item);
+	};
 
 	//? to check for "todo tasks" in the local storage
 	useEffect(() => {
@@ -186,6 +190,7 @@ function App() {
 												handleDeleteTodo={handleDeleteTodo}
 												handleCompletedTodos={handleCompletedTodos}
 												handleEdit={handleEdit}
+												todoItem={todo}
 											/>
 										);
 									}
@@ -206,7 +211,6 @@ function App() {
 									description={todo.description}
 									completedAt={todo.completedAt}
 									index={index}
-									handleDeleteTodo={handleDeleteTodo}
 									handleDeleteCompletedTodo={handleDeleteCompletedTodo}
 								/>
 							))
