@@ -78,14 +78,26 @@ function App() {
 		setCompletedTodos(reducedTodos);
 	};
 
-	const handleUpdateTitle = (value) => {};
-
-	const handleUpdateDescription = (value) => {};
-
 	const handleEdit = (index, item) => {
 		setCurrentEdit(index);
 		setCurrentEditedItem(item);
 	};
+
+	const handleUpdateTitle = (value) => {
+		setCurrentEditedItem((prev) => ({
+			...prev,
+			title: value
+		}));
+	};
+
+	const handleUpdateDescription = (value) => {
+		setCurrentEditedItem((prev) => ({
+			...prev,
+			description: value
+		}));
+	};
+
+	const handleUpdateTodo = () => {};
 
 	//? to check for "todo tasks" in the local storage
 	useEffect(() => {
@@ -169,17 +181,19 @@ function App() {
 										return (
 											<div key={uuidv4()} className={styles.editWrapper}>
 												<input
-													name="newTitle"
 													type="text"
 													placeholder="Update title"
 													onChange={(e) => handleUpdateTitle(e.target.value)}
 													value={currentEditedItem.title}
 												/>
 												<textarea
-													name="newDescription"
+													rows={4}
 													placeholder="Update Description"
 													onChange={(e) => handleUpdateDescription(e.target.value)}
 													value={currentEditedItem.description}></textarea>
+												<button type="button" onClick={handleUpdateTodo}>
+													Update
+												</button>
 											</div>
 										);
 									} else {
