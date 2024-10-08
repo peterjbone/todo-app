@@ -83,14 +83,18 @@ function App() {
 		setCurrentEditedItem(item);
 	};
 
-	const handleUpdateTitle = (value) => {
-		setCurrentEditedItem((prev) => ({
-			...prev,
-			title: value
-		}));
+	const handleUpdateTitle = (e) => {
+		const { value } = e.target;
+		setCurrentEditedItem((prev) => {
+			return {
+				...prev,
+				title: value
+			};
+		});
 	};
 
-	const handleUpdateDescription = (value) => {
+	const handleUpdateDescription = (e) => {
+		const { value } = e.target;
 		setCurrentEditedItem((prev) => ({
 			...prev,
 			description: value
@@ -181,15 +185,19 @@ function App() {
 										return (
 											<div key={uuidv4()} className={styles.editWrapper}>
 												<input
+													id="updateTitle"
+													name="updateTitle"
 													type="text"
 													placeholder="Update title"
-													onChange={(e) => handleUpdateTitle(e.target.value)}
+													onChange={handleUpdateTitle}
 													value={currentEditedItem.title}
 												/>
 												<textarea
+													id="updateDescription"
+													name="updateDescription"
 													rows={4}
 													placeholder="Update Description"
-													onChange={(e) => handleUpdateDescription(e.target.value)}
+													onChange={handleUpdateDescription}
 													value={currentEditedItem.description}></textarea>
 												<button type="button" onClick={handleUpdateTodo}>
 													Update
