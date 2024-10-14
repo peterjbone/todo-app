@@ -157,7 +157,7 @@
 
 .editWrapper {
 	padding: 0.5em;
-	border: 3px solid red;
+	/* 	border: 3px solid red; */
 	background-color: #444;
 	box-shadow: 0 5px 10px 0 #0008;
 	display: flex;

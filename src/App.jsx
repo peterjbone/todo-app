@@ -90,6 +90,12 @@ function App() {
 			title: value
 		}));
 	};
+	const updatedTitleRef = useRef(null);
+	useEffect(() => {
+		if (updatedTitleRef.current) {
+			updatedTitleRef.current.focus();
+		}
+	}, [currentEditedItem.title]);
 
 	const handleUpdateDescription = (value) => {
 		setCurrentEditedItem((prevState) => ({
@@ -97,6 +103,8 @@ function App() {
 			description: value
 		}));
 	};
+	const updatedDescriptionRef = useRef(null);
+	useEffect(() => {}, [currentEditedItem.description]);
 
 	const handleUpdateTodo = () => {
 		let newTodo = [...allTodos];
@@ -188,9 +196,8 @@ function App() {
 									if (currentEdit === index) {
 										return (
 											<div key={uuidv4()} className={styles.editWrapper}>
-												{console.log("se volvio a renderizar")}
 												<input
-													id="updatedTitle"
+													ref={updatedTitleRef}
 													type="text"
 													placeholder="Update title"
 													value={currentEditedItem.title}
