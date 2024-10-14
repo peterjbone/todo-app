@@ -14,7 +14,7 @@ const TaskListItem = ({
 	handleCompletedTodos,
 	handleDeleteCompletedTodo,
 	handleEdit,
-	todoItem
+	todo
 }) => {
 	const checkIconClassNames = classNames(styles.icon, styles.checkIcon);
 	const deleteIconClassNames = classNames(styles.icon, styles.deleteIcon);
@@ -59,7 +59,7 @@ const TaskListItem = ({
 				{!completedAt && (
 					<AiOutlineEdit
 						className={editIconClassNames}
-						onClick={() => handleEdit(index, todoItem)}
+						onClick={() => handleEdit(index, todo)}
 						title="Edit?"
 					/>
 				)}

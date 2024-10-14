@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.css";
 import Input from "./components/Input/Input.jsx";
@@ -10,7 +10,7 @@ function App() {
 	const [newDescription, setNewDescription] = useState("");
 	const [allTodos, setAllTodos] = useState([]);
 	const [completedTodos, setCompletedTodos] = useState([]);
-	const [currentEdit, setCurrentEdit] = useState("");
+	const [currentEdit, setCurrentEdit] = useState(null);
 	const [currentEditedItem, setCurrentEditedItem] = useState({
 		title: "",
 		description: ""
@@ -87,10 +87,10 @@ function App() {
 		setCurrentEditedItem({ title: item.title, description: item.description });
 	};
 
-	const handleUpdateTitle = (e) => {
-		const { value } = e.target;
-		setCurrentEditedItem((prev) => ({
-			...prev,
+	const handleUpdateTitle = (event) => {
+		const { value } = event.target;
+		setCurrentEditedItem((prevState) => ({
+			...prevState,
 			title: value
 		}));
 	};
@@ -125,7 +125,7 @@ function App() {
 
 	return (
 		<div className={styles.App}>
-			{console.log(currentEditedItem)}
+			{/* 	{console.log(currentEditedItem)} */}
 			<h1>Todo app list</h1>
 
 			<div className={styles.todoWrapper}>
@@ -133,7 +133,7 @@ function App() {
 				<div className={styles.inputsGroup}>
 					<div className={styles.inputItem}>
 						<Input
-							id="title"
+							id="newTitle"
 							label="Title"
 							placeholder="What is the task Title?"
 							value={newTitle}
@@ -142,7 +142,7 @@ function App() {
 					</div>
 					<div className={styles.inputItem}>
 						<Input
-							id="description"
+							id="newDescription"
 							label="Description"
 							placeholder="What is the task description?"
 							value={newDescription}
@@ -196,8 +196,8 @@ function App() {
 													value={currentEditedItem.title}
 												/>
 												<textarea
-													id="updateDescription"
-													name="updateDescription"
+													id="description"
+													name="description"
 													rows={4}
 													placeholder="Update Description"
 													onChange={handleUpdateDescription}
@@ -217,7 +217,7 @@ function App() {
 												handleDeleteTodo={handleDeleteTodo}
 												handleCompletedTodos={handleCompletedTodos}
 												handleEdit={handleEdit}
-												todoItem={todo}
+												todo={todo}
 											/>
 										);
 									}
