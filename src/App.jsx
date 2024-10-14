@@ -10,11 +10,8 @@ function App() {
 	const [newDescription, setNewDescription] = useState("");
 	const [allTodos, setAllTodos] = useState([]);
 	const [completedTodos, setCompletedTodos] = useState([]);
-	const [currentEdit, setCurrentEdit] = useState(null);
-	const [currentEditedItem, setCurrentEditedItem] = useState({
-		title: "",
-		description: ""
-	});
+	const [currentEdit, setCurrentEdit] = useState("");
+	const [currentEditedItem, setCurrentEditedItem] = useState("");
 
 	const handleTodoBtn = () => setIsCompletedScreen(false);
 	const handleCompletedBtn = () => setIsCompletedScreen(true);
@@ -87,23 +84,27 @@ function App() {
 		setCurrentEditedItem({ title: item.title, description: item.description });
 	};
 
-	const handleUpdateTitle = (event) => {
-		const { value } = event.target;
+	const handleUpdateTitle = (value) => {
 		setCurrentEditedItem((prevState) => ({
 			...prevState,
 			title: value
 		}));
 	};
 
-	const handleUpdateDescription = (e) => {
-		const { value } = e.target;
-		setCurrentEditedItem((prev) => ({
-			...prev,
+	const handleUpdateDescription = (value) => {
+		setCurrentEditedItem((prevState) => ({
+			...prevState,
 			description: value
 		}));
 	};
 
-	const handleUpdateTodo = () => {};
+	const handleUpdateTodo = () => {
+		let newTodo = [...allTodos];
+		newTodo[currentEdit] = currentEditedItem;
+		localStorage.setItem("todoList", JSON.stringify(newTodo));
+		setAllTodos(newTodo);
+		setCurrentEdit(null);
+	};
 
 	//? to check for "todo tasks" in the local storage
 	useEffect(() => {
@@ -187,20 +188,18 @@ function App() {
 									if (currentEdit === index) {
 										return (
 											<div key={uuidv4()} className={styles.editWrapper}>
+												{console.log("se volvio a renderizar")}
 												<input
-													id="title"
-													name="title"
+													id="updatedTitle"
 													type="text"
 													placeholder="Update title"
-													onChange={handleUpdateTitle}
 													value={currentEditedItem.title}
+													onChange={(e) => handleUpdateTitle(e.target.value)}
 												/>
 												<textarea
-													id="description"
-													name="description"
 													rows={4}
 													placeholder="Update Description"
-													onChange={handleUpdateDescription}
+													onChange={(e) => handleUpdateDescription(e.target.value)}
 													value={currentEditedItem.description}></textarea>
 												<button type="button" onClick={handleUpdateTodo}>
 													Update
