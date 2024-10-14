@@ -103,15 +103,13 @@ function App() {
 			description: value
 		}));
 	};
-	const updatedDescriptionRef = useRef(null);
-	useEffect(() => {}, [currentEditedItem.description]);
 
 	const handleUpdateTodo = () => {
 		let newTodo = [...allTodos];
 		newTodo[currentEdit] = currentEditedItem;
 		localStorage.setItem("todoList", JSON.stringify(newTodo));
 		setAllTodos(newTodo);
-		setCurrentEdit(null);
+		setCurrentEdit("");
 	};
 
 	//? to check for "todo tasks" in the local storage
