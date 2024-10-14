@@ -11,7 +11,10 @@ function App() {
 	const [allTodos, setAllTodos] = useState([]);
 	const [completedTodos, setCompletedTodos] = useState([]);
 	const [currentEdit, setCurrentEdit] = useState("");
-	const [currentEditedItem, setCurrentEditedItem] = useState("");
+	const [currentEditedItem, setCurrentEditedItem] = useState({
+		title: "",
+		description: ""
+	});
 
 	const handleTodoBtn = () => setIsCompletedScreen(false);
 	const handleCompletedBtn = () => setIsCompletedScreen(true);
@@ -78,19 +81,18 @@ function App() {
 		setCompletedTodos(reducedTodos);
 	};
 
+	//? FOR UPDATE THE TODOS
 	const handleEdit = (index, item) => {
 		setCurrentEdit(index);
-		setCurrentEditedItem(item);
+		setCurrentEditedItem({ title: item.title, description: item.description });
 	};
 
 	const handleUpdateTitle = (e) => {
 		const { value } = e.target;
-		setCurrentEditedItem((prev) => {
-			return {
-				...prev,
-				title: value
-			};
-		});
+		setCurrentEditedItem((prev) => ({
+			...prev,
+			title: value
+		}));
 	};
 
 	const handleUpdateDescription = (e) => {
@@ -123,6 +125,7 @@ function App() {
 
 	return (
 		<div className={styles.App}>
+			{console.log(currentEditedItem)}
 			<h1>Todo app list</h1>
 
 			<div className={styles.todoWrapper}>
@@ -185,8 +188,8 @@ function App() {
 										return (
 											<div key={uuidv4()} className={styles.editWrapper}>
 												<input
-													id="updateTitle"
-													name="updateTitle"
+													id="title"
+													name="title"
 													type="text"
 													placeholder="Update title"
 													onChange={handleUpdateTitle}
