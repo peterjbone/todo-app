@@ -175,6 +175,21 @@
 	border-radius: 5px;
 }
 
+.editWrapper > input.textareaLike {
+	height: 100px; /* Ajusta la altura para que parezca un textarea */
+	width: 100%; /* Ancho completo */
+	padding: 10px; /* Espaciado interno para parecer un textarea */
+	box-sizing: border-box; /* Para que el padding no afecte el ancho */
+	border: 1px solid #ccc; /* Borde similar al de un textarea */
+	border-radius: 4px; /* Bordes redondeados como un textarea */
+	font-family: inherit; /* Usa la misma fuente que el resto del documento */
+	font-size: 16px; /* Ajusta el tamaño de la fuente */
+	resize: none; /* Elimina la opción de redimensionar */
+	overflow: hidden; /* Oculta el contenido que sobresale */
+	white-space: pre-wrap; /* Permite el salto de línea si es necesario */
+	word-wrap: break-word; /* Controla la forma en que las palabras largas se dividen */
+}
+
 .editWrapper > button {
 	width: fit-content;
 	padding: 0.8em 0.6em;

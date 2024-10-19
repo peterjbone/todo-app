@@ -103,6 +103,12 @@ function App() {
 			description: value
 		}));
 	};
+	const updatedDescriptionRef = useRef(null);
+	useEffect(() => {
+		if (updatedDescriptionRef.current) {
+			updatedDescriptionRef.current.focus();
+		}
+	}, [currentEditedItem.description]);
 
 	const handleUpdateTodo = () => {
 		let newTodo = [...allTodos];
@@ -201,11 +207,12 @@ function App() {
 													value={currentEditedItem.title}
 													onChange={(e) => handleUpdateTitle(e.target.value)}
 												/>
-												<textarea
-													rows={4}
+												<input
+													ref={updatedDescriptionRef}
+													className={styles.textareaLike}
 													placeholder="Update Description"
 													onChange={(e) => handleUpdateDescription(e.target.value)}
-													value={currentEditedItem.description}></textarea>
+													value={currentEditedItem.description}></input>
 												<button type="button" onClick={handleUpdateTodo}>
 													Update
 												</button>
