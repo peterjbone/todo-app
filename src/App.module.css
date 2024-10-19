@@ -166,8 +166,7 @@
 	gap: 0.85em;
 }
 
-.editWrapper > input,
-.editWrapper > textarea {
+.editWrapper > input {
 	width: 100%;
 	height: auto;
 	padding: 0.4em;
