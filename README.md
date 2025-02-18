@@ -1,1 +1,1 @@
-# Todo app list with React 📝
+# React todo app v1
